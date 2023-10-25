@@ -1,0 +1,2 @@
+pip install fastapi ariadne uvicorn starlette
+pip install fastapi uvicorn supabase google-auth PyDrive python-dotenv
