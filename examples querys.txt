@@ -1,0 +1,16 @@
+query {
+  getProducsIds {
+    id
+  }
+}
+
+query {
+	getProductNameAndPriceWithId(productId: 3){
+    name
+    price
+  }
+}
+
+query {
+  getImageAIdWithProductId(productId:"3")
+}
