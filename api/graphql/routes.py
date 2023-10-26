@@ -1,4 +1,5 @@
-from ariadne import ObjectType, QueryType, make_executable_schema
+from ariadne import ObjectType, QueryType
+from ariadne.contrib.federation import FederatedObjectType, make_federated_schema
 from api.helpers.helpersDB import get_products_ids, get_product_name_and_price_with_id, get_image_a_id_with_product_id
 from api.helpers.helpersDrive import get_root_folder_ids, getFilesIdsOfFolderWithId
 
@@ -17,8 +18,8 @@ type_defs = """
 """
 
 query = QueryType()
-hello = ObjectType("Query")
-Product = ObjectType("Product")
+hello = FederatedObjectType("Query")
+Product = FederatedObjectType("Product")
 
 @hello.field("hello")
 def resolve_hello(*_):
@@ -36,4 +37,4 @@ def resolve_getProductNameAndPriceWithId(*_,productId):
 def resolver_getImageAIdWithProductId(*_,productId):
     return get_image_a_id_with_product_id(str(productId))
 
-schema = make_executable_schema(type_defs, [query, hello])
+schema = make_federated_schema(type_defs, [query, hello])
